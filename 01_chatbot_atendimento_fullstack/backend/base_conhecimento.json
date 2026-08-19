@@ -1,0 +1,42 @@
+{
+  "empresa": "AfesuTech Soluções Inteligentes",
+  "descricao": "Empresa pioneira em suporte automatizado e escalabilidade de atendimento com Inteligência Artificial Generativa.",
+  "topicos": [
+    {
+      "id": "sobre",
+      "perguntas_chave": ["o que é a afesutech", "quem são vocês", "o que a empresa faz", "sobre a empresa", "serviços"],
+      "resposta": "A AfesuTech é uma provedora de soluções em atendimento automatizado com IA Generativa. Ajudamos empresas a escalar o suporte ao cliente em até 10x mantendo alto nível de personalização e baixo custo operacional."
+    },
+    {
+      "id": "planos_precos",
+      "perguntas_chave": ["quais os planos", "quanto custa", "preço", "valores", "tabela de preços", "plano mensal"],
+      "resposta": "Oferecemos 3 planos principais:\n1. **Plano Starter (R$ 199/mês)**: até 1.000 atendimentos/mês e integração com WhatsApp.\n2. **Plano Pro (R$ 499/mês)**: até 10.000 atendimentos, reconhecimento de voz e painel analítico.\n3. **Plano Enterprise (Sob consulta)**: Atendimentos ilimitados, treinamento de modelos personalizados e SLA de 99.9%."
+    },
+    {
+      "id": "suporte_tecnico",
+      "perguntas_chave": ["como funciona o suporte", "horário de atendimento", "abrir chamado", "falha no sistema", "problema técnico"],
+      "resposta": "Nosso suporte técnico automatizado funciona 24 horas por dia, 7 dias por semana. Para atendimento com especialistas humanos de nível 2, nosso horário é de segunda a sexta, das 08h às 20h."
+    },
+    {
+      "id": "integracao_api",
+      "perguntas_chave": ["como integrar", "tem api", "documentação", "integração react", "webhook", "fastapi"],
+      "resposta": "Nossa plataforma disponibiliza APIs RESTful em FastAPI e SDKs para JavaScript/React e Python. Você pode conectar seu ERP, CRM ou website em menos de 10 minutos utilizando nossos webhooks seguros com autenticação JWT."
+    },
+    {
+      "id": "ia_generativa",
+      "perguntas_chave": ["qual ia vocês usam", "modelo generativo", "como funciona a ia", "rag", "segurança de dados"],
+      "resposta": "Utilizamos uma arquitetura híbrida de RAG (Retrieval-Augmented Generation) combinando modelos de linguagem de ponta com bases de conhecimento vetoriais privadas, garantindo respostas precisas, sem alucinações e em total conformidade com a LGPD."
+    },
+    {
+      "id": "cancelamento_reembolso",
+      "perguntas_chave": ["como cancelar", "reembolso", "troca de plano", "política de cancelamento"],
+      "resposta": "Você pode cancelar ou alterar seu plano a qualquer momento pelo painel do cliente, sem taxas rescisórias ou fidelidade. Garantimos reembolso integral nos primeiros 14 dias de teste."
+    }
+  ],
+  "faq_rapido": [
+    "Como contratar a solução?",
+    "Quais os planos e preços?",
+    "Como funciona a integração com React e Python?",
+    "A IA funciona 24 horas por dia?"
+  ]
+}

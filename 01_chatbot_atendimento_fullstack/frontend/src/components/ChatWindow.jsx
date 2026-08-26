@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Send, ThumbsUp, ThumbsDown, Sparkles, RefreshCw, Database, Cpu, Zap, Download } from 'lucide-react';
+import { Send, ThumbsUp, ThumbsDown, Sparkles, RefreshCw, Database, Cpu, Zap, Download, Bot, User, Copy, Check } from 'lucide-react';
 import VoiceInput from './VoiceInput';
+import FormattedMessage from './FormattedMessage';
 
 export default function ChatWindow({ apiOnline }) {
   const [messages, setMessages] = useState([
@@ -21,6 +22,7 @@ export default function ChatWindow({ apiOnline }) {
   ]);
   const [inputText, setInputText] = useState('');
   const [loading, setLoading] = useState(false);
+  const [copiedId, setCopiedId] = useState(null);
   const [metrics, setMetrics] = useState({
     total_messages: 1,
     resolved_by_kb: 0,
@@ -28,6 +30,12 @@ export default function ChatWindow({ apiOnline }) {
     negative_feedbacks: 0,
     satisfaction_rate: 100.0
   });
+
+  const copyToClipboard = (id, text) => {
+    navigator.clipboard?.writeText(text);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
 
   const messagesEndRef = useRef(null);
 
@@ -214,9 +222,9 @@ export default function ChatWindow({ apiOnline }) {
               className={`message-bubble ${msg.sender === 'user' ? 'message-user' : 'message-bot'}`}
             >
               {msg.sender === 'bot' && (
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.45rem' }}>
                   <span className="meta-tag">
-                    <Sparkles size={12} /> {msg.source || 'IA Generativa'}
+                    <Sparkles size={12} /> {msg.source?.includes('groq') ? 'IA Generativa (Groq GPT-120B)' : (msg.source || 'IA Generativa')}
                   </span>
                   {msg.confidence !== undefined && (
                     <span style={{ fontSize: '0.7rem', color: 'var(--text-dim)' }}>
@@ -226,40 +234,51 @@ export default function ChatWindow({ apiOnline }) {
                 </div>
               )}
 
-              <div style={{ whiteSpace: 'pre-wrap' }}>
-                {msg.text.split('\n').map((line, idx) => (
-                  <p key={idx} style={{ marginBottom: line ? '0.35rem' : '0.15rem' }}>
-                    {line.replace(/\*\*(.*?)\*\*/g, '$1')}
-                  </p>
-                ))}
-              </div>
+              {msg.sender === 'bot' ? (
+                <FormattedMessage content={msg.text} />
+              ) : (
+                <div style={{ whiteSpace: 'pre-wrap' }}>{msg.text}</div>
+              )}
 
               <div style={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                marginTop: '0.4rem',
+                marginTop: '0.5rem',
+                paddingTop: '0.35rem',
+                borderTop: msg.sender === 'bot' ? '1px solid rgba(255,255,255,0.06)' : 'none',
                 fontSize: '0.7rem',
                 color: msg.sender === 'user' ? 'rgba(255,255,255,0.7)' : 'var(--text-dim)'
               }}>
                 <span>{msg.timestamp}</span>
 
-                {msg.sender === 'bot' && msg.id !== 'welcome' && (
-                  <div className="message-feedback">
+                {msg.sender === 'bot' && (
+                  <div className="message-feedback" style={{ marginTop: 0, paddingTop: 0, borderTop: 'none' }}>
                     <button
-                      className={`feedback-btn ${msg.feedback === 'liked' ? 'liked' : ''}`}
-                      onClick={() => handleFeedback(msg.id, true)}
-                      title="Útil"
+                      className="feedback-btn"
+                      onClick={() => copyToClipboard(msg.id, msg.text)}
+                      title="Copiar resposta"
                     >
-                      <ThumbsUp size={13} />
+                      {copiedId === msg.id ? <Check size={13} style={{ color: '#10b981' }} /> : <Copy size={13} />}
                     </button>
-                    <button
-                      className={`feedback-btn ${msg.feedback === 'disliked' ? 'disliked' : ''}`}
-                      onClick={() => handleFeedback(msg.id, false)}
-                      title="Não foi útil"
-                    >
-                      <ThumbsDown size={13} />
-                    </button>
+                    {msg.id !== 'welcome' && (
+                      <>
+                        <button
+                          className={`feedback-btn ${msg.feedback === 'liked' ? 'liked' : ''}`}
+                          onClick={() => handleFeedback(msg.id, true)}
+                          title="Útil"
+                        >
+                          <ThumbsUp size={13} />
+                        </button>
+                        <button
+                          className={`feedback-btn ${msg.feedback === 'disliked' ? 'disliked' : ''}`}
+                          onClick={() => handleFeedback(msg.id, false)}
+                          title="Não foi útil"
+                        >
+                          <ThumbsDown size={13} />
+                        </button>
+                      </>
+                    )}
                   </div>
                 )}
               </div>
@@ -269,7 +288,7 @@ export default function ChatWindow({ apiOnline }) {
           {loading && (
             <div className="message-bubble message-bot" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Sparkles size={16} className="animate-spin" style={{ color: '#3b82f6' }} />
-              <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Gerando resposta inteligente...</span>
+              <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Gerando resposta inteligente com IA...</span>
             </div>
           )}
 

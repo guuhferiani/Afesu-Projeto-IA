@@ -44,6 +44,8 @@ def home():
         "status": "online",
         "service": "AfesuTech AI Support Backend",
         "version": "1.0.0",
+        "llm_active": engine.is_llm_active(),
+        "active_model": engine.groq_model if engine.is_llm_active() else "offline_rag",
         "endpoints": ["/api/chat", "/api/knowledge-base", "/api/metrics", "/api/feedback"]
     }
 
@@ -69,6 +71,8 @@ def get_knowledge_base():
 def get_metrics():
     return {
         "status": "active",
+        "llm_active": engine.is_llm_active(),
+        "active_model": engine.groq_model if engine.is_llm_active() else "offline_rag",
         "metrics": engine.metrics,
         "satisfaction_rate": (
             round((engine.metrics["positive_feedbacks"] / max(1, (engine.metrics["positive_feedbacks"] + engine.metrics["negative_feedbacks"]))) * 100, 1)

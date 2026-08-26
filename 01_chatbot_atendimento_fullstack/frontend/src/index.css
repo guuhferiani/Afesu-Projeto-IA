@@ -468,3 +468,168 @@ h1, h2, h3, h4, h5, h6 {
 .badge-pending { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
 .badge-progress { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
 .badge-done { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+
+/* ========================================================
+   Formatação Rica de Respostas do Chatbot (Markdown & Tabelas)
+   ======================================================== */
+.formatted-markdown-body {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #e2e8f0;
+}
+
+.formatted-markdown-body h1,
+.formatted-markdown-body h2,
+.formatted-markdown-body h3,
+.formatted-markdown-body h4 {
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.formatted-markdown-body h1 {
+  font-size: 1.25rem;
+  margin: 0.85rem 0 0.45rem 0;
+  color: #60a5fa;
+}
+
+.formatted-markdown-body h2 {
+  font-size: 1.12rem;
+  margin: 0.8rem 0 0.4rem 0;
+  color: #93c5fd;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.25rem;
+}
+
+.formatted-markdown-body h3 {
+  font-size: 1.02rem;
+  margin: 0.7rem 0 0.35rem 0;
+  color: #bae6fd;
+}
+
+.formatted-markdown-body h4 {
+  font-size: 0.95rem;
+  margin: 0.5rem 0 0.25rem 0;
+  color: #e0f2fe;
+}
+
+.formatted-markdown-body p {
+  margin-bottom: 0.65rem;
+  color: #e2e8f0;
+}
+
+.formatted-markdown-body p:last-child {
+  margin-bottom: 0;
+}
+
+.formatted-markdown-body strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.formatted-markdown-body em {
+  color: #cbd5e1;
+  font-style: italic;
+}
+
+.formatted-markdown-body ul,
+.formatted-markdown-body ol {
+  padding-left: 1.35rem;
+  margin: 0.5rem 0 0.75rem 0;
+}
+
+.formatted-markdown-body li {
+  margin-bottom: 0.35rem;
+  line-height: 1.55;
+  color: #e2e8f0;
+}
+
+.formatted-markdown-body ul li::marker {
+  color: #3b82f6;
+}
+
+.formatted-markdown-body ol li::marker {
+  color: #60a5fa;
+  font-weight: 600;
+}
+
+/* Tabelas Elegantes e Responsivas */
+.formatted-markdown-body table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 0.85rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.formatted-markdown-body th {
+  background: rgba(30, 41, 59, 0.95);
+  color: #93c5fd;
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-align: left;
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.formatted-markdown-body td {
+  padding: 0.6rem 0.85rem;
+  font-size: 0.88rem;
+  color: #cbd5e1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  line-height: 1.45;
+}
+
+.formatted-markdown-body tr:last-child td {
+  border-bottom: none;
+}
+
+.formatted-markdown-body tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.formatted-markdown-body tr:hover {
+  background: rgba(59, 130, 246, 0.06);
+}
+
+/* Blocos de Código & Inline Code */
+.formatted-markdown-body code {
+  background: rgba(15, 23, 42, 0.85);
+  color: #38bdf8;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-family: 'Consolas', 'Fira Code', monospace;
+  font-size: 0.85em;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.formatted-markdown-body pre {
+  background: #090d16;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.9rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 0.7rem 0;
+}
+
+.formatted-markdown-body pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: #e2e8f0;
+}
+
+.formatted-markdown-body blockquote {
+  border-left: 3px solid #3b82f6;
+  padding-left: 0.85rem;
+  margin: 0.65rem 0;
+  color: #94a3b8;
+  font-style: italic;
+}
+

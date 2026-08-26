@@ -1,33 +1,53 @@
+/* ========================================================
+   DESIGN SYSTEM MONOCROMÁTICO & MINIMALISTA
+   Paleta: Preto, Tons de Cinza e Branco Off-White
+   ======================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
 :root {
-  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  
-  --bg-main: #0b0f19;
-  --bg-card: rgba(18, 24, 38, 0.75);
-  --bg-card-hover: rgba(28, 36, 56, 0.85);
-  --bg-secondary: #131b2e;
-  
-  --border-color: rgba(255, 255, 255, 0.08);
-  --border-highlight: rgba(59, 130, 246, 0.35);
-  
-  --primary: #3b82f6;
-  --primary-glow: rgba(59, 130, 246, 0.25);
-  --accent: #8b5cf6;
-  --success: #10b981;
-  --warning: #f59e0b;
-  --danger: #ef4444;
-  
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --text-dim: #64748b;
-  
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
+
+  /* Superfícies & Fundos (Preto & Cinzas Neutros) */
+  --bg-main: #0a0a0a;
+  --bg-surface: #121214;
+  --bg-card: #18181b;
+  --bg-card-hover: #222226;
+  --bg-secondary: #27272a;
+  --bg-input: #141416;
+
+  /* Bordas Sutis e Delimitadores */
+  --border-color: #27272a;
+  --border-subtle: #1e1e22;
+  --border-highlight: #3f3f46;
+
+  /* Tipografia (Branco Off-White e Escala de Cinzas) */
+  --text-main: #fafafa;
+  --text-secondary: #e4e4e7;
+  --text-muted: #a1a1aa;
+  --text-dim: #71717a;
+
+  /* Ações & Destaques Monocromáticos */
+  --btn-primary-bg: #ffffff;
+  --btn-primary-text: #0a0a0a;
+  --btn-secondary-bg: #27272a;
+  --btn-secondary-text: #f4f4f5;
+
+  /* Status Discretos */
+  --status-online: #22c55e;
+  --status-offline: #71717a;
+
+  /* Raios e Espaçamentos */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
   --radius-full: 9999px;
-  
-  --shadow-glow: 0 0 25px rgba(59, 130, 246, 0.15);
-  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 8px 24px -4px rgba(0, 0, 0, 0.5);
 }
 
 * {
@@ -42,59 +62,53 @@ body {
   color: var(--text-main);
   min-height: 100vh;
   line-height: 1.5;
-  background-image: 
-    radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.12) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.12) 0px, transparent 50%),
-    radial-gradient(at 50% 50%, rgba(16, 185, 129, 0.04) 0px, transparent 50%);
-  background-attachment: fixed;
-  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scrollbars */
+/* Scrollbars Minimalistas */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(11, 15, 25, 0.8);
+  background: var(--bg-main);
 }
 ::-webkit-scrollbar-thumb {
-  background: #25334d;
+  background: #27272a;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3b82f6;
+  background: #3f3f46;
 }
 
-/* Typography & Utilities */
+/* Tipografia */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  color: var(--text-main);
+  letter-spacing: -0.025em;
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #34d399 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.subtle-title {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 400;
 }
 
+/* Cards & Superfícies */
 .glass-card {
   background: var(--bg-card);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .glass-card:hover {
   border-color: var(--border-highlight);
-  box-shadow: var(--shadow-card), var(--shadow-glow);
 }
 
-/* App Container */
+/* Layout Geral */
 .app-layout {
   display: flex;
   flex-direction: column;
@@ -103,18 +117,18 @@ h1, h2, h3, h4, h5, h6 {
 
 .main-content {
   flex: 1;
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 1.5rem;
   width: 100%;
 }
 
-/* Navigation Tabs */
+/* Abas de Navegação Super Clean */
 .tabs-container {
   display: flex;
-  gap: 0.5rem;
-  padding: 0.35rem;
-  background: rgba(19, 27, 46, 0.85);
+  gap: 0.35rem;
+  padding: 0.3rem;
+  background: var(--bg-surface);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   margin-bottom: 1.5rem;
@@ -125,39 +139,39 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.65rem 1.15rem;
-  font-size: 0.9rem;
-  font-weight: 600;
+  padding: 0.55rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
   color: var(--text-muted);
   background: transparent;
   border: none;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
   white-space: nowrap;
 }
 
 .tab-btn:hover {
   color: var(--text-main);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .tab-btn.active {
-  color: #ffffff;
-  background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+  color: var(--btn-primary-text);
+  background: var(--btn-primary-bg);
+  font-weight: 600;
 }
 
-/* Chatbot Interface */
+/* Interface do Chatbot */
 .chat-container {
   display: grid;
-  grid-template-columns: 1fr 340px;
-  gap: 1.5rem;
-  height: calc(100vh - 210px);
+  grid-template-columns: 1fr 320px;
+  gap: 1.25rem;
+  height: calc(100vh - 190px);
   min-height: 600px;
 }
 
-@media (max-width: 980px) {
+@media (max-width: 960px) {
   .chat-container {
     grid-template-columns: 1fr;
     height: auto;
@@ -169,6 +183,9 @@ h1, h2, h3, h4, h5, h6 {
   flex-direction: column;
   height: 100%;
   overflow: hidden;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
 }
 
 .chat-messages {
@@ -180,56 +197,61 @@ h1, h2, h3, h4, h5, h6 {
   gap: 1rem;
 }
 
+/* Balões de Mensagem Clean */
 .message-bubble {
-  max-width: 82%;
-  padding: 0.9rem 1.15rem;
+  max-width: 84%;
+  padding: 0.85rem 1.1rem;
   border-radius: var(--radius-md);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   line-height: 1.6;
   position: relative;
-  animation: fadeIn 0.25s ease forwards;
+  animation: fadeIn 0.15s ease forwards;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
+  from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Mensagem do Usuário (Preto Sólido / Cinza Escuro com borda limpa) */
 .message-user {
   align-self: flex-end;
-  background: linear-gradient(135deg, #2563eb, #3b82f6);
-  color: #ffffff;
+  background: #27272a;
+  color: #fafafa;
+  border: 1px solid #3f3f46;
   border-bottom-right-radius: 2px;
 }
 
+/* Mensagem do Bot / Assistente (Card Cinza Escuro Minimalista) */
 .message-bot {
   align-self: flex-start;
-  background: rgba(30, 41, 59, 0.85);
+  background: #18181b;
   border: 1px solid var(--border-color);
-  color: var(--text-main);
+  color: var(--text-secondary);
   border-bottom-left-radius: 2px;
 }
 
+/* Tags de Metadados / Modelo */
 .meta-tag {
   display: inline-flex;
   align-items: center;
-  gap: 0.25rem;
-  font-size: 0.72rem;
-  padding: 0.2rem 0.5rem;
-  border-radius: var(--radius-full);
-  background: rgba(59, 130, 246, 0.15);
-  color: #60a5fa;
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  margin-bottom: 0.4rem;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-xs);
+  background: #27272a;
+  color: #d4d4d8;
+  border: 1px solid #3f3f46;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
+/* Botões de Ação na Mensagem (Like, Dislike, Copy) */
 .message-feedback {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-top: 0.6rem;
-  padding-top: 0.4rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  gap: 0.35rem;
 }
 
 .feedback-btn {
@@ -237,245 +259,206 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   color: var(--text-dim);
   cursor: pointer;
-  padding: 0.2rem;
+  padding: 0.25rem;
+  border-radius: var(--radius-xs);
   display: flex;
   align-items: center;
   transition: all 0.15s ease;
 }
 
 .feedback-btn:hover {
-  color: var(--primary);
-  transform: scale(1.15);
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .feedback-btn.liked {
-  color: var(--success);
+  color: #ffffff;
+  background: #27272a;
 }
 
 .feedback-btn.disliked {
-  color: var(--danger);
+  color: #a1a1aa;
 }
 
-/* Chat Input Bar */
+/* Barra de Entrada (Input Bar) */
 .chat-input-bar {
-  padding: 1rem;
+  padding: 0.85rem 1.15rem;
   border-top: 1px solid var(--border-color);
-  background: rgba(15, 23, 42, 0.95);
+  background: var(--bg-surface);
   display: flex;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.quick-chips {
+  display: flex;
   align-items: center;
+  gap: 0.45rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+.chip-btn {
+  background: #18181b;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 400;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.chip-btn:hover {
+  color: var(--text-main);
+  background: #27272a;
+  border-color: #3f3f46;
+}
+
+.input-form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .chat-input {
   flex: 1;
-  background: rgba(30, 41, 59, 0.7);
+  background: var(--bg-input);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: 0.75rem 1rem;
-  color: #ffffff;
-  font-family: inherit;
-  font-size: 0.95rem;
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 0.95rem;
+  font-size: 0.9rem;
+  color: var(--text-main);
   outline: none;
-  transition: border-color 0.2s ease;
+  font-family: inherit;
+  transition: border-color 0.15s ease;
 }
 
 .chat-input:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 2px var(--primary-glow);
+  border-color: #71717a;
 }
 
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  background: linear-gradient(135deg, #2563eb, #3b82f6);
-  color: white;
-  border: none;
-  border-radius: var(--radius-md);
-  padding: 0.75rem 1.25rem;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.btn-primary:hover {
-  filter: brightness(1.1);
-  transform: translateY(-1px);
-}
-
-.btn-primary:active {
-  transform: translateY(0);
-}
-
-.btn-icon {
-  background: rgba(30, 41, 59, 0.7);
-  border: 1px solid var(--border-color);
-  color: var(--text-muted);
-  border-radius: var(--radius-md);
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.btn-icon:hover {
-  color: #ffffff;
-  border-color: var(--border-highlight);
-  background: rgba(59, 130, 246, 0.2);
-}
-
-.btn-icon.recording {
-  background: rgba(239, 68, 68, 0.2);
-  border-color: var(--danger);
-  color: var(--danger);
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
-  70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
-  100% { transform: scale(1); }
-}
-
-/* Quick Chips */
-.quick-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  padding: 0.75rem 1rem;
-  background: rgba(15, 23, 42, 0.5);
-  border-top: 1px solid var(--border-color);
-}
-
-.chip {
-  background: rgba(30, 41, 59, 0.6);
-  border: 1px solid var(--border-color);
-  color: var(--text-muted);
-  padding: 0.35rem 0.75rem;
-  border-radius: var(--radius-full);
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.chip:hover {
-  color: #ffffff;
-  border-color: var(--primary);
-  background: rgba(59, 130, 246, 0.15);
-}
-
-/* Checklist Styling */
-.checklist-header-card {
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.progress-bar-container {
-  width: 100%;
-  height: 10px;
-  background: rgba(30, 41, 59, 0.8);
-  border-radius: 999px;
-  overflow: hidden;
-  margin-top: 0.75rem;
-}
-
-.progress-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #10b981);
-  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.module-card {
-  padding: 1.25rem;
-  margin-bottom: 1.25rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-color);
-  background: var(--bg-card);
-}
-
-.module-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.checklist-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  padding: 0.75rem;
-  border-radius: var(--radius-sm);
-  transition: background 0.15s ease;
-  cursor: pointer;
-}
-
-.checklist-item:hover {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.checklist-checkbox {
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--text-dim);
-  border-radius: 6px;
-  background: transparent;
-  cursor: pointer;
-  display: grid;
-  place-content: center;
-  transition: all 0.2s ease;
-  margin-top: 2px;
-  flex-shrink: 0;
-}
-
-.checklist-checkbox:checked {
-  background: var(--success);
-  border-color: var(--success);
-}
-
-.checklist-checkbox:checked::after {
-  content: "✔";
-  color: #ffffff;
-  font-size: 11px;
-  font-weight: bold;
-}
-
-.item-completed {
-  text-decoration: line-through;
+.chat-input::placeholder {
   color: var(--text-dim);
 }
 
-/* Status Badges */
-.badge {
-  font-size: 0.75rem;
+.btn-primary {
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 1.1rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  padding: 0.2rem 0.6rem;
-  border-radius: var(--radius-full);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition: opacity 0.15s ease;
 }
-.badge-pending { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
-.badge-progress { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
-.badge-done { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+
+.btn-primary:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.btn-primary:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.btn-icon {
+  background: #18181b;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.btn-icon:hover:not(:disabled) {
+  color: var(--text-main);
+  background: #27272a;
+  border-color: #3f3f46;
+}
+
+.btn-icon.recording {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  animation: pulseRecording 1.5s infinite;
+}
+
+@keyframes pulseRecording {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Painel Lateral de Informações */
+.sidebar-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+}
+
+.info-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.1rem;
+}
+
+.info-card h4 {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 0.84rem;
+}
+
+.stat-item:last-child {
+  border-bottom: none;
+}
+
+.stat-label {
+  color: var(--text-muted);
+}
+
+.stat-val {
+  font-weight: 600;
+  color: var(--text-main);
+  font-family: var(--font-mono);
+}
 
 /* ========================================================
-   Formatação Rica de Respostas do Chatbot (Markdown & Tabelas)
+   Formatação Markdown Limpa (Respostas da IA)
    ======================================================== */
 .formatted-markdown-body {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   line-height: 1.65;
-  color: #e2e8f0;
+  color: var(--text-secondary);
 }
 
 .formatted-markdown-body h1,
@@ -483,39 +466,27 @@ h1, h2, h3, h4, h5, h6 {
 .formatted-markdown-body h3,
 .formatted-markdown-body h4 {
   color: #ffffff;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  font-weight: 600;
+  margin: 0.8rem 0 0.35rem 0;
 }
 
 .formatted-markdown-body h1 {
-  font-size: 1.25rem;
-  margin: 0.85rem 0 0.45rem 0;
-  color: #60a5fa;
+  font-size: 1.15rem;
 }
 
 .formatted-markdown-body h2 {
-  font-size: 1.12rem;
-  margin: 0.8rem 0 0.4rem 0;
-  color: #93c5fd;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 1.05rem;
+  border-bottom: 1px solid var(--border-color);
   padding-bottom: 0.25rem;
 }
 
 .formatted-markdown-body h3 {
-  font-size: 1.02rem;
-  margin: 0.7rem 0 0.35rem 0;
-  color: #bae6fd;
-}
-
-.formatted-markdown-body h4 {
   font-size: 0.95rem;
-  margin: 0.5rem 0 0.25rem 0;
-  color: #e0f2fe;
+  color: #e4e4e7;
 }
 
 .formatted-markdown-body p {
-  margin-bottom: 0.65rem;
-  color: #e2e8f0;
+  margin-bottom: 0.6rem;
 }
 
 .formatted-markdown-body p:last-child {
@@ -528,108 +499,178 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .formatted-markdown-body em {
-  color: #cbd5e1;
+  color: #d4d4d8;
   font-style: italic;
 }
 
 .formatted-markdown-body ul,
 .formatted-markdown-body ol {
-  padding-left: 1.35rem;
-  margin: 0.5rem 0 0.75rem 0;
+  padding-left: 1.25rem;
+  margin: 0.45rem 0 0.65rem 0;
 }
 
 .formatted-markdown-body li {
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.3rem;
   line-height: 1.55;
-  color: #e2e8f0;
+  color: var(--text-secondary);
 }
 
 .formatted-markdown-body ul li::marker {
-  color: #3b82f6;
+  color: #71717a;
 }
 
 .formatted-markdown-body ol li::marker {
-  color: #60a5fa;
+  color: #a1a1aa;
   font-weight: 600;
 }
 
-/* Tabelas Elegantes e Responsivas */
+/* Tabelas Minimalistas Monocromáticas */
 .formatted-markdown-body table {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  margin: 0.85rem 0;
-  border-radius: 8px;
+  border-collapse: collapse;
+  margin: 0.75rem 0;
+  background: #141416;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
   overflow: hidden;
-  background: rgba(15, 23, 42, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
 }
 
 .formatted-markdown-body th {
-  background: rgba(30, 41, 59, 0.95);
-  color: #93c5fd;
+  background: #1f1f23;
+  color: #fafafa;
   font-weight: 600;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   text-align: left;
-  padding: 0.65rem 0.85rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.55rem 0.8rem;
+  border-bottom: 1px solid var(--border-color);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
 .formatted-markdown-body td {
-  padding: 0.6rem 0.85rem;
-  font-size: 0.88rem;
-  color: #cbd5e1;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  line-height: 1.45;
+  padding: 0.55rem 0.8rem;
+  font-size: 0.85rem;
+  color: #d4d4d8;
+  border-bottom: 1px solid #1f1f23;
 }
 
 .formatted-markdown-body tr:last-child td {
   border-bottom: none;
 }
 
-.formatted-markdown-body tr:nth-child(even) {
-  background: rgba(255, 255, 255, 0.02);
-}
-
 .formatted-markdown-body tr:hover {
-  background: rgba(59, 130, 246, 0.06);
+  background: #1c1c20;
 }
 
-/* Blocos de Código & Inline Code */
+/* Blocos de Código & Inline */
 .formatted-markdown-body code {
-  background: rgba(15, 23, 42, 0.85);
-  color: #38bdf8;
-  padding: 0.15rem 0.4rem;
+  background: #27272a;
+  color: #f4f4f5;
+  padding: 0.15rem 0.35rem;
   border-radius: 4px;
-  font-family: 'Consolas', 'Fira Code', monospace;
-  font-size: 0.85em;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  border: 1px solid #3f3f46;
 }
 
 .formatted-markdown-body pre {
-  background: #090d16;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 0.9rem;
-  border-radius: 8px;
+  background: #101012;
+  border: 1px solid var(--border-color);
+  padding: 0.85rem;
+  border-radius: var(--radius-sm);
   overflow-x: auto;
-  margin: 0.7rem 0;
+  margin: 0.65rem 0;
 }
 
 .formatted-markdown-body pre code {
   background: transparent;
   border: none;
   padding: 0;
-  color: #e2e8f0;
 }
 
 .formatted-markdown-body blockquote {
-  border-left: 3px solid #3b82f6;
-  padding-left: 0.85rem;
-  margin: 0.65rem 0;
-  color: #94a3b8;
+  border-left: 2px solid #71717a;
+  padding-left: 0.75rem;
+  margin: 0.5rem 0;
+  color: #a1a1aa;
   font-style: italic;
 }
 
+/* ========================================================
+   Página de Visão Geral & Checklist
+   ======================================================== */
+.project-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  transition: all 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.project-card:hover {
+  border-color: var(--border-highlight);
+  background: var(--bg-card);
+}
+
+.badge {
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.badge-done {
+  background: #27272a;
+  color: #ffffff;
+  border: 1px solid #3f3f46;
+}
+
+.badge-progress {
+  background: #18181b;
+  color: #a1a1aa;
+  border: 1px solid #27272a;
+}
+
+.badge-pending {
+  background: transparent;
+  color: #71717a;
+  border: 1px solid #27272a;
+}
+
+/* Checkbox Minimalista */
+.checklist-checkbox {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #52525b;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+  transition: all 0.15s ease;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.checklist-checkbox:checked {
+  background: #ffffff;
+  border-color: #ffffff;
+}
+
+.checklist-checkbox:checked::after {
+  content: "✔";
+  color: #0a0a0a;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.item-completed {
+  text-decoration: line-through;
+  color: var(--text-dim);
+}

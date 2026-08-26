@@ -40,21 +40,21 @@ export default function App() {
             className={`tab-btn ${activeTab === 'overview' ? 'active' : ''}`}
             onClick={() => setActiveTab('overview')}
           >
-            <LayoutDashboard size={18} /> Visão Geral & Planos PDF
+            <LayoutDashboard size={15} /> Visão Geral & Ementa
           </button>
 
           <button
             className={`tab-btn ${activeTab === 'chatbot' ? 'active' : ''}`}
             onClick={() => setActiveTab('chatbot')}
           >
-            <MessageSquare size={18} /> Projeto 01: Chatbot com Voz
+            <MessageSquare size={15} /> Projeto 01: Chatbot
           </button>
 
           <button
             className={`tab-btn ${activeTab === 'checklist' ? 'active' : ''}`}
             onClick={() => setActiveTab('checklist')}
           >
-            <CheckSquare size={18} /> Checklist Interativo (40h)
+            <CheckSquare size={15} /> Checklist (40h)
           </button>
         </div>
 

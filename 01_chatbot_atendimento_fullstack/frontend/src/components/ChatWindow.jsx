@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Send, ThumbsUp, ThumbsDown, Sparkles, RefreshCw, Database, Cpu, Zap, Download, Bot, User, Copy, Check } from 'lucide-react';
+import { Send, ThumbsUp, ThumbsDown, RefreshCw, Download, Copy, Check, BarChart2, Layers } from 'lucide-react';
 import VoiceInput from './VoiceInput';
 import FormattedMessage from './FormattedMessage';
 
@@ -8,14 +8,14 @@ export default function ChatWindow({ apiOnline }) {
     {
       id: 'welcome',
       sender: 'bot',
-      text: 'Olá! Sou o assistente de inteligência artificial da **AfesuTech** 🚀\nEstou aqui para tirar dúvidas sobre nossos planos de atendimento automatizado, integrações técnicas com Python/React e arquitetura de IA. Como posso ajudar você hoje?',
-      source: 'greeting',
+      text: 'Olá! Sou o assistente virtual da **AfesuTech**.\nEstou à disposição para esclarecer dúvidas sobre nossos serviços, planos, suporte técnico e arquitetura de sistemas. Como posso ajudar você hoje?',
+      source: 'sistema',
       confidence: 1.0,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       suggestedActions: [
         'Quais os planos e preços?',
         'Como funciona a integração com React e Python?',
-        'Qual a arquitetura de IA utilizada?',
+        'Qual a arquitetura utilizada?',
         'Como funciona o suporte 24/7?'
       ]
     }
@@ -96,27 +96,26 @@ export default function ChatWindow({ apiOnline }) {
           text: data.reply,
           source: data.source,
           confidence: data.confidence,
-          suggestedActions: data.suggested_actions || [],
+          suggestedActions: data.suggested_actions,
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         };
         setMessages((prev) => [...prev, botMsg]);
       } else {
-        throw new Error('Falha na resposta do servidor');
+        throw new Error('API Error');
       }
     } catch (err) {
-      // Fallback amigável local se a API não estiver respondendo
       setTimeout(() => {
         const fallbackMsg = {
           id: 'bot_offline_' + Date.now(),
           sender: 'bot',
-          text: 'Recebi sua mensagem! O backend em FastAPI está sendo conectado. Você pode testar perguntas sobre **planos**, **integração**, **IA generativa** e **suporte**.',
+          text: 'Recebi sua mensagem. O backend local está em sincronização. Você pode consultar sobre planos, suporte e integrações.',
           source: 'local_fallback',
           confidence: 0.8,
           suggestedActions: ['Quais os planos e preços?', 'Como funciona o suporte 24/7?'],
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         };
         setMessages((prev) => [...prev, fallbackMsg]);
-      }, 500);
+      }, 400);
     } finally {
       setLoading(false);
       fetchMetrics();
@@ -146,13 +145,13 @@ export default function ChatWindow({ apiOnline }) {
   };
 
   const clearChat = () => {
-    if (window.confirm('Deseja limpar todo o histórico da conversa?')) {
+    if (window.confirm('Deseja reiniciar o histórico da conversa?')) {
       setMessages([
         {
           id: 'welcome_reset',
           sender: 'bot',
           text: 'Histórico reiniciado. Como posso ajudar você agora?',
-          source: 'system',
+          source: 'sistema',
           confidence: 1.0,
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
           suggestedActions: ['Quais os planos e preços?', 'Como integrar com React e Python?']
@@ -163,13 +162,13 @@ export default function ChatWindow({ apiOnline }) {
 
   const exportChat = () => {
     const content = messages
-      .map((m) => `[${m.timestamp}] ${m.sender === 'user' ? 'CLIENTE' : 'IA AFESUTECH'}: ${m.text}`)
+      .map((m) => `[${m.timestamp}] ${m.sender === 'user' ? 'USUÁRIO' : 'AFESUTECH'}: ${m.text}`)
       .join('\n\n');
     const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `historico_atendimento_ia_${Date.now()}.txt`;
+    a.download = `atendimento_${Date.now()}.txt`;
     a.click();
   };
 
@@ -178,38 +177,31 @@ export default function ChatWindow({ apiOnline }) {
   return (
     <div className="chat-container">
       {/* Coluna Principal: Chat */}
-      <div className="glass-card chat-box">
-        {/* Cabeçalho da Janela de Chat */}
+      <div className="chat-box">
+        {/* Cabeçalho do Chat */}
         <div style={{
-          padding: '1rem 1.25rem',
+          padding: '0.85rem 1.15rem',
           borderBottom: '1px solid var(--border-color)',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          background: 'rgba(15, 23, 42, 0.6)'
+          background: 'var(--bg-surface)'
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-            <div style={{
-              width: '10px',
-              height: '10px',
-              borderRadius: '50%',
-              backgroundColor: '#10b981',
-              boxShadow: '0 0 10px #10b981'
-            }} />
-            <div>
-              <h3 style={{ fontSize: '0.95rem' }}>AfesuTech AI Support (Situação de Aprendizagem 1)</h3>
-              <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                RAG Base de Conhecimento • FastAPI • Web Speech STT
-              </p>
-            </div>
+          <div>
+            <h3 style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-main)' }}>
+              Assistente de Atendimento
+            </h3>
+            <p style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>
+              Projeto 01 • Python FastAPI + React
+            </p>
           </div>
 
-          <div style={{ display: 'flex', gap: '0.4rem' }}>
+          <div style={{ display: 'flex', gap: '0.35rem' }}>
             <button className="btn-icon" onClick={exportChat} title="Exportar histórico (.txt)">
-              <Download size={16} />
+              <Download size={15} />
             </button>
             <button className="btn-icon" onClick={clearChat} title="Reiniciar conversa">
-              <RefreshCw size={16} />
+              <RefreshCw size={15} />
             </button>
           </div>
         </div>
@@ -224,11 +216,11 @@ export default function ChatWindow({ apiOnline }) {
               {msg.sender === 'bot' && (
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.45rem' }}>
                   <span className="meta-tag">
-                    <Sparkles size={12} /> {msg.source?.includes('groq') ? 'IA Generativa (Groq GPT-120B)' : (msg.source || 'IA Generativa')}
+                    {msg.source?.includes('groq') ? 'Groq GPT-120B' : (msg.source || 'Sistema')}
                   </span>
                   {msg.confidence !== undefined && (
-                    <span style={{ fontSize: '0.7rem', color: 'var(--text-dim)' }}>
-                      Confiança: {Math.round(msg.confidence * 100)}%
+                    <span style={{ fontSize: '0.7rem', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
+                      {Math.round(msg.confidence * 100)}%
                     </span>
                   )}
                 </div>
@@ -246,34 +238,34 @@ export default function ChatWindow({ apiOnline }) {
                 alignItems: 'center',
                 marginTop: '0.5rem',
                 paddingTop: '0.35rem',
-                borderTop: msg.sender === 'bot' ? '1px solid rgba(255,255,255,0.06)' : 'none',
+                borderTop: msg.sender === 'bot' ? '1px solid rgba(255,255,255,0.05)' : 'none',
                 fontSize: '0.7rem',
                 color: msg.sender === 'user' ? 'rgba(255,255,255,0.7)' : 'var(--text-dim)'
               }}>
-                <span>{msg.timestamp}</span>
+                <span style={{ fontFamily: 'var(--font-mono)' }}>{msg.timestamp}</span>
 
                 {msg.sender === 'bot' && (
-                  <div className="message-feedback" style={{ marginTop: 0, paddingTop: 0, borderTop: 'none' }}>
+                  <div className="message-feedback">
                     <button
                       className="feedback-btn"
                       onClick={() => copyToClipboard(msg.id, msg.text)}
-                      title="Copiar resposta"
+                      title="Copiar texto"
                     >
-                      {copiedId === msg.id ? <Check size={13} style={{ color: '#10b981' }} /> : <Copy size={13} />}
+                      {copiedId === msg.id ? <Check size={13} style={{ color: '#ffffff' }} /> : <Copy size={13} />}
                     </button>
                     {msg.id !== 'welcome' && (
                       <>
                         <button
                           className={`feedback-btn ${msg.feedback === 'liked' ? 'liked' : ''}`}
                           onClick={() => handleFeedback(msg.id, true)}
-                          title="Útil"
+                          title="Resposta correta"
                         >
                           <ThumbsUp size={13} />
                         </button>
                         <button
                           className={`feedback-btn ${msg.feedback === 'disliked' ? 'disliked' : ''}`}
                           onClick={() => handleFeedback(msg.id, false)}
-                          title="Não foi útil"
+                          title="Resposta incorreta"
                         >
                           <ThumbsDown size={13} />
                         </button>
@@ -287,8 +279,14 @@ export default function ChatWindow({ apiOnline }) {
 
           {loading && (
             <div className="message-bubble message-bot" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Sparkles size={16} className="animate-spin" style={{ color: '#3b82f6' }} />
-              <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Gerando resposta inteligente com IA...</span>
+              <span style={{
+                width: '6px',
+                height: '6px',
+                borderRadius: '50%',
+                backgroundColor: '#ffffff',
+                animation: 'pulseRecording 1s infinite'
+              }} />
+              <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>Gerando resposta...</span>
             </div>
           )}
 
@@ -297,12 +295,9 @@ export default function ChatWindow({ apiOnline }) {
 
         {/* Sugestões Rápidas (Chips) */}
         {lastBotMessage?.suggestedActions && lastBotMessage.suggestedActions.length > 0 && (
-          <div className="quick-chips">
-            <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)', width: '100%', marginBottom: '2px' }}>
-              Sugestões de perguntas rápidas:
-            </span>
+          <div className="quick-chips" style={{ padding: '0.5rem 1.15rem 0', background: 'var(--bg-surface)' }}>
             {lastBotMessage.suggestedActions.map((action, i) => (
-              <button key={i} className="chip" onClick={() => handleSendMessage(action)}>
+              <button key={i} className="chip-btn" onClick={() => handleSendMessage(action)}>
                 {action}
               </button>
             ))}
@@ -317,75 +312,77 @@ export default function ChatWindow({ apiOnline }) {
             handleSendMessage();
           }}
         >
-          <VoiceInput onTranscript={handleVoiceTranscript} disabled={loading} />
+          <div className="input-form">
+            <VoiceInput onTranscript={handleVoiceTranscript} disabled={loading} />
 
-          <input
-            type="text"
-            className="chat-input"
-            placeholder="Digite sua dúvida ou use o microfone..."
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-            disabled={loading}
-          />
+            <input
+              type="text"
+              className="chat-input"
+              placeholder="Digite sua mensagem..."
+              value={inputText}
+              onChange={(e) => setInputText(e.target.value)}
+              disabled={loading}
+            />
 
-          <button type="submit" className="btn-primary" disabled={loading || !inputText.trim()}>
-            <Send size={18} />
-          </button>
+            <button type="submit" className="btn-primary" disabled={loading || !inputText.trim()}>
+              <Send size={15} />
+            </button>
+          </div>
         </form>
       </div>
 
       {/* Coluna Lateral: Métricas e Arquitetura */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <div className="glass-card" style={{ padding: '1.25rem' }}>
-          <h3 style={{ fontSize: '0.95rem', marginBottom: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <Zap size={18} color="#3b82f6" /> Métricas em Tempo Real
-          </h3>
+      <div className="sidebar-panel">
+        <div className="info-card">
+          <h4>
+            <BarChart2 size={15} /> Métricas de Atendimento
+          </h4>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
-            <div style={{ background: 'rgba(30, 41, 59, 0.5)', padding: '0.75rem', borderRadius: 'var(--radius-md)' }}>
-              <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', display: 'block' }}>Total de Mensagens</span>
-              <span style={{ fontSize: '1.3rem', fontWeight: 'bold', color: '#ffffff' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.65rem', marginBottom: '0.75rem' }}>
+            <div style={{ background: 'var(--bg-card)', padding: '0.65rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)' }}>
+              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', display: 'block' }}>Mensagens</span>
+              <span style={{ fontSize: '1.15rem', fontWeight: 600, color: 'var(--text-main)', fontFamily: 'var(--font-mono)' }}>
                 {metrics?.metrics?.total_messages || messages.length}
               </span>
             </div>
 
-            <div style={{ background: 'rgba(30, 41, 59, 0.5)', padding: '0.75rem', borderRadius: 'var(--radius-md)' }}>
-              <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', display: 'block' }}>Satisfação</span>
-              <span style={{ fontSize: '1.3rem', fontWeight: 'bold', color: '#10b981' }}>
+            <div style={{ background: 'var(--bg-card)', padding: '0.65rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)' }}>
+              <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', display: 'block' }}>Satisfação</span>
+              <span style={{ fontSize: '1.15rem', fontWeight: 600, color: 'var(--text-main)', fontFamily: 'var(--font-mono)' }}>
                 {metrics?.satisfaction_rate !== undefined ? `${metrics.satisfaction_rate}%` : '100%'}
               </span>
             </div>
           </div>
 
-          <div style={{ marginTop: '0.85rem', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-            <p>✓ Resoluções via Base de Conhecimento (RAG)</p>
-            <p>✓ Reconhecimento de Voz (STT) ativo</p>
+          <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
+            <p>• Motor de RAG & Base Vetorial</p>
+            <p>• Reconhecimento de Voz (STT)</p>
           </div>
         </div>
 
-        <div className="glass-card" style={{ padding: '1.25rem' }}>
-          <h3 style={{ fontSize: '0.95rem', marginBottom: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <Cpu size={18} color="#8b5cf6" /> Stack do Projeto 01
-          </h3>
+        <div className="info-card">
+          <h4>
+            <Layers size={15} /> Especificações Técnicas
+          </h4>
 
-          <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.55rem', fontSize: '0.8rem' }}>
-            <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-muted)' }}>
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#3b82f6' }} />
-              <strong>Backend:</strong> Python 3 + FastAPI REST API
-            </li>
-            <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-muted)' }}>
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#8b5cf6' }} />
-              <strong>Frontend:</strong> React (Vite) + CSS Glassmorphism
-            </li>
-            <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-muted)' }}>
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10b981' }} />
-              <strong>Voz (STT):</strong> Web Speech API no Navegador
-            </li>
-            <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-muted)' }}>
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#f59e0b' }} />
-              <strong>IA:</strong> RAG & NLP para intenções e respostas
-            </li>
-          </ul>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', fontSize: '0.78rem' }}>
+            <div className="stat-item">
+              <span className="stat-label">Backend</span>
+              <span className="stat-val">FastAPI (Python)</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-label">Frontend</span>
+              <span className="stat-val">React 18 + Vite</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-label">Modelo LLM</span>
+              <span className="stat-val">Groq LPU (120B)</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-label">Entrada de Voz</span>
+              <span className="stat-val">Web Speech API</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

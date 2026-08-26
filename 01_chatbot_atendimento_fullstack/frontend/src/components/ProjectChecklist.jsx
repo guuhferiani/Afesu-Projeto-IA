@@ -95,20 +95,30 @@ export default function ProjectChecklist() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
       {/* Card Superior de Progresso Geral */}
-      <div className="glass-card checklist-header-card">
-        <div style={{ flex: '1', minWidth: '280px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-            <Award size={24} color="#3b82f6" />
-            <h2 style={{ fontSize: '1.2rem' }}>Acompanhamento do Avanço dos Projetos</h2>
+      <div className="glass-card" style={{ padding: '1.25rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1.25rem', background: 'var(--bg-surface)' }}>
+        <div style={{ flex: '1', minWidth: '260px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <Award size={20} color="#ffffff" />
+            <h2 style={{ fontSize: '1.1rem', fontWeight: 600 }}>Acompanhamento da Ementa</h2>
           </div>
-          <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
-            Monitore a execução das entregas práticas e capacidades da ementa oficial (40 Horas).
+          <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
+            Execução de entregas práticas e competências do curso de 40 Horas.
           </p>
 
-          <div className="progress-bar-container">
+          <div style={{
+            height: '6px',
+            background: '#27272a',
+            borderRadius: 'var(--radius-full)',
+            overflow: 'hidden',
+            marginTop: '0.85rem'
+          }}>
             <div
-              className="progress-bar-fill"
-              style={{ width: `${progressPercentage}%` }}
+              style={{
+                height: '100%',
+                width: `${progressPercentage}%`,
+                background: '#ffffff',
+                transition: 'width 0.3s ease'
+              }}
             />
           </div>
         </div>
@@ -116,32 +126,32 @@ export default function ProjectChecklist() {
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '1.5rem',
-          background: 'rgba(15, 23, 42, 0.6)',
-          padding: '0.85rem 1.25rem',
+          gap: '1.25rem',
+          background: 'var(--bg-card)',
+          padding: '0.75rem 1.1rem',
           borderRadius: 'var(--radius-md)',
           border: '1px solid var(--border-color)'
         }}>
           <div>
-            <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', display: 'block' }}>Progresso Total</span>
-            <span style={{ fontSize: '1.8rem', fontWeight: '800', color: progressPercentage === 100 ? '#10b981' : '#60a5fa' }}>
+            <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', display: 'block' }}>Conclusão</span>
+            <span style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--text-main)', fontFamily: 'var(--font-mono)' }}>
               {progressPercentage}%
             </span>
           </div>
 
           <div style={{ borderLeft: '1px solid var(--border-color)', paddingLeft: '1.25rem' }}>
-            <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', display: 'block' }}>Tarefas Concluídas</span>
-            <span style={{ fontSize: '1.2rem', fontWeight: '700', color: '#ffffff' }}>
-              {completedItems} <span style={{ fontSize: '0.85rem', color: 'var(--text-dim)' }}>/ {totalItems}</span>
+            <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', display: 'block' }}>Tarefas</span>
+            <span style={{ fontSize: '1.1rem', fontWeight: 600, color: '#ffffff', fontFamily: 'var(--font-mono)' }}>
+              {completedItems} <span style={{ fontSize: '0.8rem', color: 'var(--text-dim)' }}>/ {totalItems}</span>
             </span>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-            <button className="btn-icon" onClick={exportReport} title="Exportar relatório de progresso (.txt)">
-              <Download size={16} />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+            <button className="btn-icon" style={{ width: '32px', height: '32px' }} onClick={exportReport} title="Exportar relatório (.txt)">
+              <Download size={14} />
             </button>
-            <button className="btn-icon" onClick={resetChecklist} title="Resetar checklist">
-              <RotateCcw size={16} />
+            <button className="btn-icon" style={{ width: '32px', height: '32px' }} onClick={resetChecklist} title="Resetar checklist">
+              <RotateCcw size={14} />
             </button>
           </div>
         </div>
@@ -151,17 +161,17 @@ export default function ProjectChecklist() {
       <div style={{
         display: 'flex',
         alignItems: 'center',
-        gap: '0.5rem',
+        gap: '0.45rem',
         overflowX: 'auto',
-        paddingBottom: '0.5rem'
+        paddingBottom: '0.35rem'
       }}>
-        <span style={{ fontSize: '0.8rem', color: 'var(--text-dim)', display: 'flex', alignItems: 'center', gap: '0.35rem', whiteSpace: 'nowrap' }}>
-          <Filter size={14} /> Filtrar Módulo:
+        <span style={{ fontSize: '0.78rem', color: 'var(--text-dim)', display: 'flex', alignItems: 'center', gap: '0.35rem', whiteSpace: 'nowrap' }}>
+          <Filter size={13} /> Filtrar:
         </span>
 
         <button
-          className={`chip ${filterModuleId === 'all' ? 'active' : ''}`}
-          style={filterModuleId === 'all' ? { background: '#2563eb', color: '#ffffff', borderColor: '#3b82f6' } : {}}
+          className="chip-btn"
+          style={filterModuleId === 'all' ? { background: '#ffffff', color: '#0a0a0a', fontWeight: 600 } : {}}
           onClick={() => setFilterModuleId('all')}
         >
           Todos ({modules.length})
@@ -169,11 +179,12 @@ export default function ProjectChecklist() {
 
         {modules.map((m) => {
           const isDone = m.items.every((i) => i.completed);
+          const isSelected = filterModuleId === String(m.moduleId);
           return (
             <button
               key={m.moduleId}
-              className="chip"
-              style={filterModuleId === String(m.moduleId) ? { background: '#2563eb', color: '#ffffff', borderColor: '#3b82f6' } : {}}
+              className="chip-btn"
+              style={isSelected ? { background: '#ffffff', color: '#0a0a0a', fontWeight: 600 } : {}}
               onClick={() => setFilterModuleId(String(m.moduleId))}
             >
               Módulo {m.moduleId} {isDone ? '✔' : ''}
@@ -183,32 +194,32 @@ export default function ProjectChecklist() {
       </div>
 
       {/* Lista de Módulos e Itens */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
         {filteredModules.map((module) => {
           const modTotal = module.items.length;
           const modDone = module.items.filter((i) => i.completed).length;
           const isComplete = modDone === modTotal;
 
           return (
-            <div key={module.moduleId} className="glass-card module-card">
-              <div className="module-header">
+            <div key={module.moduleId} className="glass-card" style={{ padding: '1.15rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.85rem', flexWrap: 'wrap', gap: '0.5rem' }}>
                 <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                    <h3 style={{ fontSize: '1rem', color: '#ffffff' }}>{module.title}</h3>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <h3 style={{ fontSize: '0.95rem', fontWeight: 600, color: '#ffffff' }}>{module.title}</h3>
                     <span className={`badge ${isComplete ? 'badge-done' : modDone > 0 ? 'badge-progress' : 'badge-pending'}`}>
                       {isComplete ? 'Concluído' : modDone > 0 ? 'Em Andamento' : 'Pendente'}
                     </span>
                   </div>
-                  <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
+                  <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
                     {module.description}
                   </p>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flexShrink: 0 }}>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                    <Clock size={13} /> {module.hours}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexShrink: 0 }}>
+                  <span style={{ fontSize: '0.72rem', color: 'var(--text-dim)', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                    <Clock size={12} /> {module.hours}
                   </span>
-                  <span style={{ fontSize: '0.85rem', fontWeight: 600, color: isComplete ? '#34d399' : '#60a5fa' }}>
+                  <span style={{ fontSize: '0.82rem', fontWeight: 600, color: isComplete ? '#ffffff' : 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
                     {modDone}/{modTotal}
                   </span>
                 </div>
@@ -218,17 +229,26 @@ export default function ProjectChecklist() {
                 {module.items.map((item) => (
                   <div
                     key={item.id}
-                    className="checklist-item"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.65rem',
+                      padding: '0.45rem 0.65rem',
+                      background: 'rgba(255, 255, 255, 0.02)',
+                      borderRadius: 'var(--radius-xs)',
+                      cursor: 'pointer',
+                      border: '1px solid rgba(255, 255, 255, 0.03)'
+                    }}
                     onClick={() => toggleItem(module.moduleId, item.id)}
                   >
                     <input
                       type="checkbox"
                       className="checklist-checkbox"
                       checked={item.completed}
-                      onChange={() => {}} // Handler no container
+                      onChange={() => {}}
                     />
                     <span
-                      style={{ fontSize: '0.88rem', flex: 1 }}
+                      style={{ fontSize: '0.85rem', flex: 1, color: item.completed ? 'var(--text-dim)' : 'var(--text-secondary)' }}
                       className={item.completed ? 'item-completed' : ''}
                     >
                       {item.text}

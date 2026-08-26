@@ -68,28 +68,28 @@ export default function VoiceInput({ onTranscript, disabled }) {
         className={`btn-icon ${isListening ? 'recording' : ''}`}
         onClick={toggleListening}
         disabled={disabled}
-        title={isListening ? 'Gravando... Clique para parar' : 'Falar com o Chatbot por Voz (STT)'}
+        title={isListening ? 'Gravando... Clique para parar' : 'Entrada por voz'}
       >
-        {isListening ? <MicOff size={20} /> : <Mic size={20} />}
+        {isListening ? <MicOff size={16} /> : <Mic size={16} />}
       </button>
 
       {isListening && (
         <span style={{
           position: 'absolute',
-          bottom: '50px',
+          bottom: '46px',
           left: '50%',
           transform: 'translateX(-50%)',
-          background: 'rgba(239, 68, 68, 0.9)',
-          color: '#ffffff',
+          background: '#ffffff',
+          color: '#0a0a0a',
           fontSize: '0.72rem',
           fontWeight: 600,
-          padding: '0.25rem 0.65rem',
+          padding: '0.2rem 0.65rem',
           borderRadius: 'var(--radius-full)',
           whiteSpace: 'nowrap',
-          boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
-          animation: 'fadeIn 0.2s ease'
+          boxShadow: '0 4px 14px rgba(0,0,0,0.5)',
+          animation: 'fadeIn 0.15s ease'
         }}>
-          Gravando áudio (pt-BR)...
+          Ouvindo voz...
         </span>
       )}
     </div>

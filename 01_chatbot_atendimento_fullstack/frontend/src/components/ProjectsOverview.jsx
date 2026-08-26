@@ -56,31 +56,35 @@ export default function ProjectsOverview({ onOpenChat, onOpenChecklist }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
       {/* Banner de Apresentação */}
-      <div className="glass-card" style={{ padding: '1.5rem', background: 'linear-gradient(135deg, rgba(37,99,235,0.15), rgba(139,92,246,0.15))' }}>
+      <div className="glass-card" style={{ padding: '1.5rem', background: 'var(--bg-surface)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
           <div>
-            <span className="badge badge-progress" style={{ marginBottom: '0.5rem', display: 'inline-block' }}>
-              Trilha Oficial de 40 Horas • SENAI-SP & Afesu Veleiros
+            <span className="badge badge-done" style={{ marginBottom: '0.5rem', display: 'inline-block' }}>
+              Trilha Oficial 40h • SENAI-SP & Afesu Veleiros
             </span>
-            <h2 style={{ fontSize: '1.35rem' }}>4 Projetos Práticos Híbridos (Python + React)</h2>
+            <h2 style={{ fontSize: '1.25rem', fontWeight: 600 }}>Projetos Práticos (Python + React)</h2>
             <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.35rem', maxWidth: '750px' }}>
-              Esta grade foi projetada para cobrir 100% da ementa do curso, preparando os estudantes com portfólio real de Full-Stack AI.
+              Ementa aplicada com arquitetura Full-Stack, Machine Learning, Visão Computacional e Processamento de Linguagem Natural.
             </p>
           </div>
 
-          <div style={{ display: 'flex', gap: '0.6rem' }}>
+          <div style={{ display: 'flex', gap: '0.5rem' }}>
             <button className="btn-primary" onClick={onOpenChat}>
-              <Bot size={16} /> Testar Chatbot Ativo
+              Acessar Chatbot (P1)
             </button>
-            <button className="btn-primary" style={{ background: 'rgba(30, 41, 59, 0.8)', border: '1px solid var(--border-color)' }} onClick={onOpenChecklist}>
-              <CheckCircle size={16} /> Ver Checklist
+            <button
+              className="btn-primary"
+              style={{ background: 'var(--bg-card)', color: 'var(--text-main)', border: '1px solid var(--border-color)' }}
+              onClick={onOpenChecklist}
+            >
+              Ver Checklist
             </button>
           </div>
         </div>
       </div>
 
       {/* Grid dos 4 Projetos */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.25rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.25rem' }}>
         {projects.map((proj) => {
           const Icon = proj.icon;
           return (
@@ -88,25 +92,25 @@ export default function ProjectsOverview({ onOpenChat, onOpenChecklist }) {
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.85rem' }}>
                   <div style={{
-                    width: '42px',
-                    height: '42px',
-                    borderRadius: 'var(--radius-md)',
-                    background: 'rgba(59, 130, 246, 0.15)',
-                    border: '1px solid rgba(59, 130, 246, 0.3)',
+                    width: '38px',
+                    height: '38px',
+                    borderRadius: 'var(--radius-sm)',
+                    background: '#27272a',
+                    border: '1px solid #3f3f46',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: '#60a5fa'
+                    color: '#fafafa'
                   }}>
-                    <Icon size={22} />
+                    <Icon size={20} />
                   </div>
                   <span className={`badge ${proj.statusClass}`}>{proj.status}</span>
                 </div>
 
-                <span style={{ fontSize: '0.72rem', color: 'var(--primary)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                <span style={{ fontSize: '0.72rem', color: 'var(--text-dim)', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                   {proj.category}
                 </span>
-                <h3 style={{ fontSize: '1.05rem', margin: '0.3rem 0 0.5rem 0' }}>{proj.title}</h3>
+                <h3 style={{ fontSize: '1rem', margin: '0.3rem 0 0.5rem 0', fontWeight: 600 }}>{proj.title}</h3>
                 <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: '1.5', marginBottom: '1rem' }}>
                   {proj.description}
                 </p>
@@ -116,8 +120,8 @@ export default function ProjectsOverview({ onOpenChat, onOpenChecklist }) {
                     <span key={i} style={{
                       fontSize: '0.72rem',
                       padding: '0.15rem 0.5rem',
-                      background: 'rgba(255, 255, 255, 0.04)',
-                      borderRadius: 'var(--radius-sm)',
+                      background: '#1f1f23',
+                      borderRadius: 'var(--radius-xs)',
                       border: '1px solid var(--border-color)',
                       color: 'var(--text-muted)'
                     }}>

@@ -1,0 +1,10 @@
+{
+  "buildCommand": "cd 01_chatbot_atendimento_fullstack/frontend && npm install && npm run build",
+  "outputDirectory": "01_chatbot_atendimento_fullstack/frontend/dist",
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index.py"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "afesu-portal-ia-fullstack",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd 01_chatbot_atendimento_fullstack/frontend && npm install && npm run build",
+    "dev": "cd 01_chatbot_atendimento_fullstack/frontend && npm run dev"
+  }
+}

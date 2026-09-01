@@ -148,18 +148,22 @@ O CSS deve conter:
 
 ---
 
-### 💬 PROMPT 7 — Componente de Entrada por Voz / STT (`frontend/src/components/VoiceInput.jsx`)
+### 💬 PROMPT 7 — Componente de Entrada por Voz / STT Mobile (`frontend/src/components/VoiceInput.jsx`)
 ```text
-Crie um componente React chamado "VoiceInput.jsx" que utilize a Web Speech API (window.SpeechRecognition ou window.webkitSpeechRecognition) nativa dos navegadores para entrada por voz.
+Crie um componente React chamado "VoiceInput.jsx" que utilize a Web Speech API (window.SpeechRecognition ou window.webkitSpeechRecognition) nativa dos navegadores para entrada por voz, com suporte robusto para computadores e smartphones (Android/iOS).
 
-Requisitos:
-1. Botão com ícone de microfone (Lucide React).
-2. Configuração de idioma para Português do Brasil ('pt-BR').
-3. Estado visual "isListening" que aplica classe animada enquanto o usuário estiver falando.
-4. Quando a fala for reconhecida, envia o texto transcrito para a prop "onTranscript(text)".
-5. Tratamento de erros amigável (microfone bloqueado ou navegador incompatível).
-6. Props: "onTranscript" (função de callback) e "disabled" (booleano).
+Requisitos do componente:
+1. Botão com ícone de microfone (Lucide React: Mic / MicOff).
+2. Configuração de idioma para Português do Brasil ("pt-BR") e inicialização limpa a cada clique para máxima estabilidade em celulares.
+3. Validação de contexto seguro (HTTPS) com aviso amigável caso o usuário acesse em HTTP não seguro no celular.
+4. Estado visual "isListening" que exibe indicador animado flutuante ("Ouvindo no celular... Fale agora!").
+5. Quando a fala for reconhecida com sucesso, envia o texto transcrito para a função de callback da prop "onTranscript(transcript)".
+6. Tratamento de erros detalhado (permissão negada, ausência de fala detectada ou navegador incompatível).
+7. Limpeza e encerramento do reconhecimento no cleanup do useEffect ao desmontar o componente.
+8. Props aceitas: "onTranscript" (função de callback obrigatória) e "disabled" (booleano opcional).
 ```
+
+> **📱 Dica para testar no celular:** Execute `npx localtunnel --port 3000` no terminal do computador e abra o link HTTPS gerado no navegador do smartphone para usar o microfone real!
 
 ---
 

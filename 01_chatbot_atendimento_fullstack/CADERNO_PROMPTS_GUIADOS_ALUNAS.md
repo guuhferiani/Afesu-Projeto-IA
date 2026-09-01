@@ -9,6 +9,20 @@ Este material foi estruturado para a prática de **Pair Programming com Intelig�
 1. **Fase 1 (Projeto Guiado):** Todas as alunas executam a sequência de prompts abaixo para construir a base técnica oficial (**AfesuTech**).
 2. **Fase 2 (Projeto Autônomo):** Com a estrutura pronta e funcionando, cada grupo ou aluna aplica os prompts de customização para criar a sua própria solução de mercado (e-commerce, clínica, escola, pet shop, etc.).
 
+### 📑 Arquivos Individuais de Prompts (Pasta `prompts/`):
+* [Prompt 01: Base de Conhecimento JSON](file:///c:/Users/Professor(a)/Documents/Gustavo%20Feriani/Projeto%20Afesu%20Veleiros%20-%20Prog%20Inteligencial%20Artificial/01_chatbot_atendimento_fullstack/prompts/01_base_conhecimento_json.md)
+* [Prompt 02: Motor de IA & PLN em Python](file:///c:/Users/Professor(a)/Documents/Gustavo%20Feriani/Projeto%20Afesu%20Veleiros%20-%20Prog%20Inteligencial%20Artificial/01_chatbot_atendimento_fullstack/prompts/02_chatbot_engine_python.md)
+* [Prompt 03: API REST FastAPI](file:///c:/Users/Professor(a)/Documents/Gustavo%20Feriani/Projeto%20Afesu%20Veleiros%20-%20Prog%20Inteligencial%20Artificial/01_chatbot_atendimento_fullstack/prompts/03_fastapi_backend_main.md)
+* [Prompt 04: Testes Automatizados no Terminal](file:///c:/Users/Professor(a)/Documents/Gustavo%20Feriani/Projeto%20Afesu%20Veleiros%20-%20Prog%20Inteligencial%20Artificial/01_chatbot_atendimento_fullstack/prompts/04_testes_backend.md)
+* [Prompt 05: Setup Frontend React + Vite](file:///c:/Users/Professor(a)/Documents/Gustavo%20Feriani/Projeto%20Afesu%20Veleiros%20-%20Prog%20Inteligencial%20Artificial/01_chatbot_atendimento_fullstack/prompts/05_setup_frontend_vite.md)
+* [Prompt 06: Estilos index.css Glassmorphism](file:///c:/Users/Professor(a)/Documents/Gustavo%20Feriani/Projeto%20Afesu%20Veleiros%20-%20Prog%20Inteligencial%20Artificial/01_chatbot_atendimento_fullstack/prompts/06_estilos_index_css.md)
+* [Prompt 07: Reconhecimento de Voz (STT)](file:///c:/Users/Professor(a)/Documents/Gustavo%20Feriani/Projeto%20Afesu%20Veleiros%20-%20Prog%20Inteligencial%20Artificial/01_chatbot_atendimento_fullstack/prompts/07_componente_voice_input.md)
+* [Prompt 08: Formatador Markdown](file:///c:/Users/Professor(a)/Documents/Gustavo%20Feriani/Projeto%20Afesu%20Veleiros%20-%20Prog%20Inteligencial%20Artificial/01_chatbot_atendimento_fullstack/prompts/08_componente_formatted_message.md)
+* [Prompt 09: Janela Principal ChatWindow](file:///c:/Users/Professor(a)/Documents/Gustavo%20Feriani/Projeto%20Afesu%20Veleiros%20-%20Prog%20Inteligencial%20Artificial/01_chatbot_atendimento_fullstack/prompts/09_componente_chat_window.md)
+* [Prompt 10: App & Header](file:///c:/Users/Professor(a)/Documents/Gustavo%20Feriani/Projeto%20Afesu%20Veleiros%20-%20Prog%20Inteligencial%20Artificial/01_chatbot_atendimento_fullstack/prompts/10_componentes_app_header.md)
+* [Prompt 11: Nova Empresa (Fase Autônoma)](file:///c:/Users/Professor(a)/Documents/Gustavo%20Feriani/Projeto%20Afesu%20Veleiros%20-%20Prog%20Inteligencial%20Artificial/01_chatbot_atendimento_fullstack/prompts/11_empresa_personalizada.md)
+* [Prompt 12: Customização CSS da Marca](file:///c:/Users/Professor(a)/Documents/Gustavo%20Feriani/Projeto%20Afesu%20Veleiros%20-%20Prog%20Inteligencial%20Artificial/01_chatbot_atendimento_fullstack/prompts/12_customizacao_css_marca.md)
+
 ---
 
 # 🚀 FASE 1: Construção Guiada Passo a Passo

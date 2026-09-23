@@ -1,7 +1,7 @@
 import React from 'react';
 import { FileText, Bot, Eye, BarChart3, Gamepad2, ArrowUpRight, CheckCircle, Code } from 'lucide-react';
 
-export default function ProjectsOverview({ onOpenChat, onOpenChecklist }) {
+export default function ProjectsOverview({ onOpenChat, onOpenChecklist, onOpenPong }) {
   const projects = [
     {
       id: 'p1',
@@ -44,11 +44,11 @@ export default function ProjectsOverview({ onOpenChat, onOpenChecklist }) {
       num: '04',
       title: 'Jogo Pong com IA Adaptativa',
       category: 'Situação de Aprendizagem 2 • Modelos Personalizados',
-      description: 'Jogo interativo Pong em React/Canvas onde o adversário é controlado por IA com calibração de tempo de reação e taxa de acerto.',
-      stack: ['React', 'HTML5 Canvas', 'Q-Learning / Heurística', 'JavaScript Puro'],
+      description: 'Jogo interativo Pong em React/Canvas onde o adversário é controlado por IA com calibração de tempo de reação, ruído e previsão de trajetória.',
+      stack: ['React', 'HTML5 Canvas', 'Raycasting Vetorial', 'Heurística de Decisão'],
       icon: Gamepad2,
-      status: 'Próxima Etapa',
-      statusClass: 'badge-progress',
+      status: 'Pronto / Ativo',
+      statusClass: 'badge-done',
       pdfName: '04_Plano_Projeto_Jogo_Pong_IA.pdf'
     }
   ];
@@ -147,7 +147,7 @@ export default function ProjectsOverview({ onOpenChat, onOpenChecklist }) {
                     style={{
                       background: 'transparent',
                       border: 'none',
-                      color: '#60a5fa',
+                      color: '#ffffff',
                       fontSize: '0.8rem',
                       fontWeight: 600,
                       cursor: 'pointer',
@@ -157,6 +157,25 @@ export default function ProjectsOverview({ onOpenChat, onOpenChecklist }) {
                     }}
                   >
                     Abrir Chat <ArrowUpRight size={14} />
+                  </button>
+                ) : proj.id === 'p4' ? (
+                  <button
+                    onClick={onOpenPong}
+                    style={{
+                      background: '#ffffff',
+                      color: '#000000',
+                      border: 'none',
+                      borderRadius: '6px',
+                      padding: '0.35rem 0.65rem',
+                      fontSize: '0.78rem',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.25rem'
+                    }}
+                  >
+                    Jogar contra IA <ArrowUpRight size={13} />
                   </button>
                 ) : (
                   <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>PDF Gerado</span>

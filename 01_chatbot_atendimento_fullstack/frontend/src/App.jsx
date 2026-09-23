@@ -3,7 +3,8 @@ import Header from './components/Header';
 import ChatWindow from './components/ChatWindow';
 import ProjectChecklist from './components/ProjectChecklist';
 import ProjectsOverview from './components/ProjectsOverview';
-import { LayoutDashboard, MessageSquare, CheckSquare } from 'lucide-react';
+import PongGame from './components/PongGame';
+import { LayoutDashboard, MessageSquare, CheckSquare, Gamepad2 } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('chatbot');
@@ -51,6 +52,13 @@ export default function App() {
           </button>
 
           <button
+            className={`tab-btn ${activeTab === 'pong' ? 'active' : ''}`}
+            onClick={() => setActiveTab('pong')}
+          >
+            <Gamepad2 size={15} /> Projeto 04: Jogo Pong (IA)
+          </button>
+
+          <button
             className={`tab-btn ${activeTab === 'checklist' ? 'active' : ''}`}
             onClick={() => setActiveTab('checklist')}
           >
@@ -63,10 +71,13 @@ export default function App() {
           <ProjectsOverview
             onOpenChat={() => setActiveTab('chatbot')}
             onOpenChecklist={() => setActiveTab('checklist')}
+            onOpenPong={() => setActiveTab('pong')}
           />
         )}
 
         {activeTab === 'chatbot' && <ChatWindow apiOnline={apiOnline} />}
+
+        {activeTab === 'pong' && <PongGame />}
 
         {activeTab === 'checklist' && <ProjectChecklist />}
       </main>

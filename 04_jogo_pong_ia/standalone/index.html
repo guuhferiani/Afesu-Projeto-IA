@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jogo Pong com IA Adaptativa - Afesu Veleiros & SENAI-SP</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <header class="game-header">
+      <div class="header-titles">
+        <span class="badge">Situação de Aprendizagem 2 • Modelos Personalizados</span>
+        <h1>Jogo Pong com IA Adaptativa</h1>
+        <p>Aperfeiçoamento Profissional em Inteligência Artificial Generativa — SENAI-SP & Afesu Veleiros</p>
+      </div>
+      <div class="header-badges">
+        <span class="status-indicator">● 60 FPS Ativo</span>
+      </div>
+    </header>
+
+    <div class="game-workspace">
+      <!-- Painel Esquerdo: Canvas do Jogo -->
+      <div class="canvas-card">
+        <div class="score-board">
+          <div class="score-item player-score">
+            <span class="score-label" id="label-player-1">Jogador 1 (Humano)</span>
+            <span class="score-value" id="score-p1">0</span>
+          </div>
+          <div class="score-divider">:</div>
+          <div class="score-item ai-score">
+            <span class="score-label" id="label-player-2">Agente de IA</span>
+            <span class="score-value" id="score-p2">0</span>
+          </div>
+        </div>
+
+        <!-- Barra de Modo Boost -->
+        <div class="boost-card">
+          <div class="boost-header">
+            <span class="boost-tag">⚡ MODO BOOST</span>
+            <span id="boostStatus" class="boost-status">Acerte a bola para carregar (+25%)</span>
+          </div>
+          <div class="boost-track">
+            <div id="boostFill" class="boost-fill" style="width: 0%;"></div>
+          </div>
+          <button id="btnTurbo" class="btn-turbo">TURBO (SHIFT)</button>
+        </div>
+
+        <div class="canvas-wrapper">
+          <canvas id="pongCanvas" width="800" height="480"></canvas>
+          <div id="gameOverlay" class="game-overlay">
+            <div class="overlay-content">
+              <h2 id="overlayTitle">Pong com IA Adaptativa</h2>
+              <p id="overlaySubtitle">Pressione ESPAÇO, tecla P ou clique no botão abaixo para iniciar</p>
+              <button id="btnStartGame" class="btn btn-primary">Iniciar Partida</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="controls-hint">
+          <span>⌨️ <b>Teclas:</b> <b>W / S</b> ou <b>Setas ↑ / ↓</b></span>
+          <span>⚡ <b>Boost:</b> Segure <b>SHIFT</b></span>
+          <span>⏸️ <b>Pausar:</b> Tecla <b>P</b> ou <b>Espaço</b></span>
+        </div>
+      </div>
+
+      <!-- Painel Direito: Configuração da IA & Telemetria -->
+      <aside class="sidebar-card">
+        <div class="panel-section">
+          <h3>🎮 Modo de Partida</h3>
+          <div class="btn-group">
+            <button id="btnModeHvAI" class="btn-toggle active">Humano vs IA</button>
+            <button id="btnModeAIvAI" class="btn-toggle">IA vs IA (Simulação)</button>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <h3>🧠 Nível da IA (Agente)</h3>
+          <div class="difficulty-grid">
+            <button class="btn-diff" data-diff="facil">Fácil</button>
+            <button class="btn-diff active" data-diff="medio">Médio</button>
+            <button class="btn-diff" data-diff="dificil">Difícil</button>
+            <button class="btn-diff" data-diff="imbativel">Imbatível</button>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <h3>⚙️ Hiperparâmetros da IA</h3>
+          <div class="param-row">
+            <label for="sliderReaction">Tempo de Reação (Latência):</label>
+            <span id="valReaction" class="param-val">80 ms</span>
+            <input type="range" id="sliderReaction" min="0" max="250" value="80" step="10">
+          </div>
+
+          <div class="param-row">
+            <label for="sliderNoise">Taxa de Erro / Ruído:</label>
+            <span id="valNoise" class="param-val">15%</span>
+            <input type="range" id="sliderNoise" min="0" max="40" value="15" step="1">
+          </div>
+
+          <div class="toggle-row">
+            <label class="switch-label">
+              <input type="checkbox" id="chkRaycast" checked>
+              <span>Exibir Previsão de Trajetória (Debug Raycast)</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="panel-section telemetry-section">
+          <h3>📊 Telemetria em Tempo Real</h3>
+          <div class="telemetry-grid">
+            <div class="tele-item">
+              <span class="tele-label">Velocidade da Bola</span>
+              <span class="tele-val" id="teleSpeed">7.0 px/f</span>
+            </div>
+            <div class="tele-item">
+              <span class="tele-label">Rali Atual</span>
+              <span class="tele-val" id="teleRally">0 rebatidas</span>
+            </div>
+            <div class="tele-item">
+              <span class="tele-label">Alvo Calculado (Y)</span>
+              <span class="tele-val" id="teleTarget">240 px</span>
+            </div>
+            <div class="tele-item">
+              <span class="tele-label">Taxa Acerto IA</span>
+              <span class="tele-val" id="teleAccuracy">100%</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script src="pong_engine.js"></script>
+</body>
+</html>
